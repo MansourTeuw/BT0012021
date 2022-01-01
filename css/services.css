@@ -1,0 +1,159 @@
+                   /* PHP page  */
+
+.showcase-php {
+    background: url('../images/php-showcase.gif') no-repeat;
+    background-position: center;
+    height: 600px;
+    padding: 140px 100px;
+    color: #fff;
+    
+}
+
+.showcase-js {
+    background: url('../images/js-showcase1.gif') no-repeat;
+    background-position: center;
+    height: 600px;
+    padding: 140px 100px;
+    color: #fff; 
+}
+
+.showcase-python {
+    background: url('../images/python-giphy.gif') no-repeat;
+    background-position: center;
+    height: 600px;
+    padding: 140px 100px;
+    color: #fff; 
+}
+
+.showcase-java {
+    background: url('../images/java-showcase.gif') no-repeat;
+    background-position: center;
+    height: 600px;
+    padding: 140px 100px;
+    color: #fff; 
+}
+
+
+
+.showcase-php h1,
+.showcase-js h1,
+.showcase-python h1,
+.showcase-java h1{
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.showcase-php hr,
+.showcase-js hr,
+ .showcase-python hr,
+ .showcase-java hr{
+    width: 100px;
+    margin: auto;
+    border-width: 3px;
+    border-color: #f44336;
+}
+
+.showcase-php p,
+.showcase-js p,
+.showcase-python p,
+.showcase-java p {
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+
+.showcase-js p,
+.showcase-python p,
+.showcase-java p {
+    opacity: 0.1;
+}
+
+
+.section {
+    padding: 40px 0;
+}
+
+.section h2 {
+    padding: 0;
+    margin: 0;
+}
+
+.section .fa {
+    font-size: 50px;
+}
+
+.section img {
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        margin-top: 190px;
+    }
+
+    .showcase-php,
+    .showcase-js,
+    .showcase-python,
+    .showcase-java {
+        height: 400px;
+        padding: 60px;
+    }
+}
+
+
+
+/* formations  */
+
+.card-container {
+    width: 100%;
+    height: 30%;
+    margin: 5% 50px 25% 50px;
+    display: flex;
+}
+
+.w3-dark-grey {
+    width: 300px;
+}
+
+.card-img {
+    width: 80%;
+}
+
+/* hover images  */
+
+.card-container .w3-container img {
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.card-container .w3-container:hover img {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
+.card-container .w3-container:hover::after {
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+    background: rgba(255, 255, 255, 0.562);
+    color: teal;
+    font-style: italic;
+    position: relative;
+    margin-top: 8%;
+}
+
+.w3-hover-opacity {
+    margin-top: 3%;
+}
+
+.php {
+    color: rgb(53, 82, 214);
+}
+
+.js {
+    color: tomato;
+}
+
+.python {
+    color: rgb(253, 146, 29);
+}

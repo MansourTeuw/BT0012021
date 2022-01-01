@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box
+}
+
+body {
+  /* width: 80%; */
+  background-color: beige;
+}
+
+
+#modal {
+    width: 90%;
+    /* height: 100%; */
+    margin: 30px;
+    border: 1px solid green;
+    background-color: whitesmoke;
+
+}
+
+.modal-content {
+    width: 85%;
+    margin: auto 5% auto 5%;
+    padding: 20px;
+    background-color: wheat;
+    border: 1px dotted teal;
+} 
+
+                             /* Partie Admin start */
+/* .modal1 {
+  margin: 20% 25% 0 15%;
+
+} */
+
+#formAdmin {
+  display: flex !important;
+  width: 90% !important;
+  height: 100% !important;
+  /* margin: 15% !important; */
+}
+
+                                    /* Partie Admin end */
+
+
+#form-input {
+  display: flexbox;
+}
+
+
+
+.form-title {
+  text-align: center;
+  color: rgb(4, 169, 109);
+  font-weight: bold;
+  margin-top: auto;
+}
+
+/* .name {
+  display: flex;
+} */
+
+/* Full-width input fields */
+  input[type=text], input[type=email], input[type=password], select {
+    border:0;
+    background: none;
+    display: flex-box;
+    margin: 20px auto;
+    text-align: center;
+    border:2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+
+}
+
+
+input[type=text]:focus, 
+input[type=email]:focus,
+input[type=password]:focus, select:focus {
+  background-color: #ddd;
+  width: 280px;
+  border-color: #2ecc71; 
+  
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 45%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  width: 70%;
+  padding-left: 200px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+}
+
+
+
+
+#userAdmin form {
+  /* margin-top: 20% !important; */
+}
