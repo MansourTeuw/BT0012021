@@ -1,57 +1,38 @@
-<?php 
-session_start();
+<?php
+require("../database/db.php");
 
-if (isset($_SESSION['user_id']) ) {
-  header("Location: index.php");
-}
-
-require("../../database/db.php");
 ?>
 
 <?php 
+$message = "";
 
 $id = $_GET['id'];
 
 
 $sql = "SELECT * 
-        FROM useradmin 
+        FROM etudiant 
         WHERE id=:id";
 
 $preparation = $db->prepare($sql);
 
 $preparation->execute([':id' => $id]);
-$admin = $preparation->fetch(PDO::FETCH_OBJ);
+$etudiant = $preparation->fetch(PDO::FETCH_OBJ);
 
-?>
-
-<link rel="stylesheet" href="css/w3.css">
-
-<?php
-
-require("header.php");
-$message = ""; 
-
-
-if (isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['psw']) && isset($_POST['psw-repeat']) && $_POST['psw'] === $_POST['psw-repeat']) {
-    $nom = $_POST['nom'];
-    $email = $_POST['email'];
+if (isset($_POST['psw']) && isset($_POST['psw-repeat']) && $_POST['psw'] === $_POST['psw-repeat']) {
     $motdepasse1 = password_hash($_POST['psw'], PASSWORD_BCRYPT);
     $motdepasse2 = password_hash($_POST['psw-repeat'], PASSWORD_BCRYPT);
 
-    $sql = 'UPDATE useradmin SET nom=:nom, email=:email, motdepasse1=:motdepasse1, motdepasse2=:motdepasse2 WHERE id=:id';
+    $sql = 'UPDATE etudiant SET motdepasse1=:motdepasse1, motdepasse2=:motdepasse2 WHERE id=:id';
 
     $preparation = $db->prepare($sql);
 
-    if ($preparation->execute([':nom' => $nom, ':email' => $email, ':motdepasse1' => $motdepasse1, ':motdepasse2' => $motdepasse2, 'id' => $id]) ) {
-        header("location: ../index.php");
-
+    if ($preparation->execute([':motdepasse1' => $motdepasse1, ':motdepasse2' => $motdepasse2])) {
+        header("Location: ../login.php");
     }
-
 
 }
 
 
-
 ?>
 
 
@@ -59,14 +40,20 @@ if (isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['psw']) && is
 
 
 
-<link rel="stylesheet" href="../../css/signup.css">
+
+
+
+
+
+
+<link rel="stylesheet" href="../css/signup.css">
 
 <div id="modal" class="modal">
     <span onclick="closeToggle()" class="close" title="Close Modal">&times;</span>
-<form class="modal-content" action="" method="post">
+<form class="modal-content" action="reinitialiser.php" method="post">
     <div class="container">
       <div class="form-title">
-      <h1>Modifier Info User Admin</h1>
+      <h1>Réinitialiser Mot de Passe</h1>
       <p>Veuillez saisir les champs concernés</p>
       </div>
       <div class="w3-panel w3-green">
@@ -76,12 +63,6 @@ if (isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['psw']) && is
       </div> 
       <hr>
       <div id="form-input">
-    
-      <!-- <label for="nom"><b>Nom</b></label> -->
-      <input class="name" type="text" placeholder="Nom" name="nom" required>
-
-      <!-- <label for="email"><b>Email</b></label> -->
-      <input type="text" placeholder="Email" name="email" required>
       
       <!-- <label for="psw"><b>Password</b></label> -->
       <input type="password" placeholder="Mot de passe" name="psw" required>
@@ -97,6 +78,7 @@ if (isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['psw']) && is
         <button type="reset" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annuler</button>
         <button type="submit" name="envoyer" class="signupbtn">S'enrégister</button>
       </div>
+      <a href="login.php">Connexion</a>
     </div>
     <div class="w3-panel w3-yellow w3-card-4">
     <?php if (!empty($erreurMoDePasse)): ?>
@@ -106,6 +88,3 @@ if (isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['psw']) && is
   </div>
   </form>
   
-
-
-<script src="js/signup.js"></script>

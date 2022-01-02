@@ -1,8 +1,8 @@
 <?php 
 session_start();
 
-if (isset($_SESSION['admin_id']) ) {
-  header("Location: login.php");
+if (!isset($_SESSION['admin_id']) ) {
+  header("Location: loginAdmin.php");
 }
 
     require('../database/db.php');
@@ -44,13 +44,13 @@ if (isset($_SESSION['admin_id']) ) {
   <a href="index.php" class="w3-bar-item w3-button w3-mobile w3-green">Tableau de Bord</a>
   <a href="CRUD/insererAdmin.php" class="w3-bar-item w3-button w3-mobile w3-blue">Inserer User Admin</a>
 
-  <a href="#etudiants" class="w3-bar-item w3-button w3-mobile">Etudiants</a>
-  <a href="#userAdmin" class="w3-bar-item w3-button w3-mobile">User Admin</a>
+  <a href="#etudiants" class="w3-bar-item w3-button w3-mobile w3-teal">Etudiants</a>
+  <a href="#userAdmin" class="w3-bar-item w3-button w3-mobile w3-indigo">User Admin</a>
   <div class="w3-dropdown-hover w3-mobile w3-right">
     <button class="w3-button">Compte <i class="fa fa-caret-down"></i></button>
     <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
       <a href="#" class="w3-bar-item w3-button w3-mobile">Profile</a>
-      <a href="../logout.php" class="w3-bar-item w3-button w3-mobile">Déconnexion</a>
+      <a href="logoutAdmin.php" class="w3-bar-item w3-button w3-mobile">Déconnexion</a>
     </div>
   </div>
 </div>
@@ -120,11 +120,11 @@ if (isset($_SESSION['admin_id']) ) {
   <td><?=$admin->email; ?></td>
 
   <td>
-    <a href="CRUD/detailsEtudiant.php?id=<?= $admin->id;?>" class=""><i class="fa fa-eye" style="font-size:48px;color:blue"></i></a>
+    <a href="CRUD/detailsAdmin.php?id=<?= $admin->id;?>" class=""><i class="fa fa-eye" style="font-size:48px;color:blue"></i></a>
 
-    <a href="CRUD/modifierEtudiant.php?id=<?= $admin->id;?>" class=""><i class="fa fa-edit" style="font-size:48px;color:blue"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="CRUD/modifierAdmin.php?id=<?= $admin->id;?>" class=""><i class="fa fa-edit" style="font-size:48px;color:blue"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <a onclick="return confirm('Voulez-vous vraiment supprimer cet enrégistrement?')" href="CRUD/supprimerEtudiant.php?id=<?= $admin->id;?>" class=""><i class="fa fa-trash-o" style="font-size:48px;color:red"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a onclick="return confirm('Voulez-vous vraiment supprimer cet enrégistrement?')" href="CRUD/supprimerAdmin.php?id=<?= $admin->id;?>" class=""><i class="fa fa-trash-o" style="font-size:48px;color:red"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
   </td>
 
 

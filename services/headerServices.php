@@ -1,3 +1,35 @@
+<?php
+
+session_start();
+
+require ('../database/db.php');
+
+// if (isset($_GET['id'])) 
+
+    // $id = $_GET['id'];
+
+$sql = 'SELECT * FROM etudiant';
+// $sql1 = 'SELECT * FROM useradmin';
+
+
+$preparation = $db->prepare($sql);
+// $preparation1 = $db->prepare($sql1);
+
+
+$preparation->execute();
+// $preparation1->execute();
+
+
+$etudiants = $preparation->fetchAll(PDO::FETCH_OBJ);
+// $userAdmin = $preparation1->fetchAll(PDO::FETCH_OBJ);
+
+
+
+?>
+
+
+
+
 <!DOCTYPE htmhol>
 <html lang="en">
 <head>
@@ -25,11 +57,16 @@
         <div class="w3-dropdown-hover w3-mobile">
         <button class="w3-button">Compte <i class="fa fa-caret-down"></i></button>
         <div id="submenu" class="w3-dropdown-content w3-bar-block">
-        <a href="profile.php" class="w3-bar-item w3-button w3-mobile">Profile</a>
+
+        <a href=" <?php foreach ($etudiants as $etudiant): ?>
+        profileEtudiant.php?id=<?= $etudiant->id;?> <?php endforeach; ?>" class="w3-bar-item w3-button w3-mobile">Profile</a>
+
         <a href="../logout.php" class="w3-bar-item w3-button w3-mobile">Déconnecter</a>
     </div>
   </div>
         </div>
     </div>
+
+
 
    

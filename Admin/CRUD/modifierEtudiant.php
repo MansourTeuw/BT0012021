@@ -6,6 +6,9 @@ if (isset($_SESSION['user_id']) ) {
 }
 
 require("../../database/db.php");
+?>
+
+<?php
 
 $message = "";
 
@@ -26,52 +29,28 @@ $etudiant = $preparation->fetch(PDO::FETCH_OBJ);
 <link rel="stylesheet" href="css/w3.css">
 
 <?php
+require("header.php");
 
-if (isset($_POST['envoyer'])) {
+if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['module']) && isset($_POST['psw']) && isset($_POST['psw-repeat']) && $_POST['psw'] === $_POST['psw-repeat']) {
 
-  if (isset($_POST['email']) && isset($_POST['psw']) && isset($_POST['psw-repeat'])) {
-    $motdepasse1 = $_POST['psw'];
-    $motdepasse2 = $_POST['psw-repeat'];
+    $prenom = $_POST['prenom'];
+    $nom = $_POST['nom'];
+    $email = $_POST['email'];
+    $module = $_POST['module'];
+    $motdepasse1 = password_hash($_POST['psw'], PASSWORD_BCRYPT);
+    $motdepasse2 = password_hash($_POST['psw-repeat'], PASSWORD_BCRYPT);
 
-    $erreurMoDePasse = "";
+    $sql = 'UPDATE etudiant SET prenom=:prenom, nom=:nom, email= :email, module=:module, motdepasse1=:motdepasse1, motdepasse2=:motdepasse2 WHERE id=:id';
 
-  if ($motdepasse1 != $motdepasse2) {
+    $preparation = $db->prepare($sql);
 
-    $erreurMoDePasse = "Les deux mots de passe ne corespondent pas";
-  }
+    if ($preparation->execute([':prenom' => $prenom ,':nom' => $nom, ':email' => $email, ':module' => $module, ':motdepasse1' => $motdepasse1, ':motdepasse2' => $motdepasse2, 'id' => $id])) {
+      header("location: ../index.php");
 
-    if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['module']) && !empty($_POST['psw'])  && !empty($_POST['psw-repeat']) && $_POST['psw'] === $_POST['psw-repeat'] ) {
-
-  
-      $sql = "UPDATE etudiant SET prenom=:prenom, nom=:nom, email=:email, module=:module, motdepasse1=:motdepasse1, motdepasse2=:motdepasse2";
-  
-      $stmt = $db->prepare($sql);
-  
-      $stmt->bindParam(':prenom', $_POST['prenom']);
-      $stmt->bindParam(':nom', $_POST['nom']);
-      $stmt->bindParam(':email', $_POST['email']);
-      $stmt->bindParam(':module', $_POST['module']);
-      $stmt->bindParam(':motdepasse1', password_hash($_POST['psw'], PASSWORD_BCRYPT));
-      $stmt->bindParam(':motdepasse2', password_hash($_POST['psw-repeat'], PASSWORD_BCRYPT));
-  
-      if ($stmt->execute()) {
-        $message = "Un élément a été enrégistré avec succés!!!";
-      } else {
-        $message = "Désolé il doit y avoir une ERREUR en créant votre compte";
-  
-      }
-  
     }
 
-  }
 
-
- 
 }
-
-
-require("../header.php");
-
 
 
 ?>
@@ -81,15 +60,15 @@ require("../header.php");
 
 
 
-<link rel="stylesheet" href="css/signup.css">
+<link rel="stylesheet" href="../../css/signup.css">
 
 <div id="modal" class="modal">
     <span onclick="closeToggle()" class="close" title="Close Modal">&times;</span>
-<form class="modal-content" action="signup.php" method="post">
+<form class="modal-content" action="" method="post">
     <div class="container">
       <div class="form-title">
-      <h1>Inscription</h1>
-      <p>Veuillez vous inscrire pour suivre une formation</p>
+      <h1>Modifier Info Etudiant</h1>
+      <p>Veuillez saisir les champs concernés</p>
       </div>
       <div class="w3-panel w3-green">
       <?php if (!empty($message)): ?>
@@ -126,9 +105,6 @@ require("../header.php");
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Se souvenir de moi
       </label>
-
-
-      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
       <div class="clearfix">
         <button type="reset" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annuler</button>

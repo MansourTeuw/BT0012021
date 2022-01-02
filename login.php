@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-if (isset($_SESSION['user_id'])) {
-  header("Location: $url");
-}
+// if (isset($_SESSION['user_id'])) {
+//   // header("Location: $url");
+// }
 
 // require('header.php'); 
 
@@ -52,7 +52,7 @@ require("database/db.php");
             }
             header("Location: $url");
         } else {
-            $message = 'Désolé identifiants invalides';
+            $message = 'Désolé identifiant ou mot de passe invalide';
     
         }
     }
@@ -72,7 +72,7 @@ require("database/db.php");
     <link rel="stylesheet" href="css/w3.css"> 
     <link rel="stylesheet" href="css/style2.css">
     
-    <form class="box" action="login.php" method="post" autocomplete="off">
+    <form class="box" action="login.php" method="post">
     <div class="w3-panel w3-yellow w3-card-4">
       <?php if (!empty($message)): ?>
         <p><?= $message; ?></p>

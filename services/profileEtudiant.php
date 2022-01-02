@@ -1,6 +1,8 @@
 <?php
+session_start();
+    require ('../database/db.php');
+    require ('headerServices.php');
 
-    require ('../../database/db.php');
 
 
     $id = $_GET['id'];
@@ -15,20 +17,19 @@
 
 $etudiants = $preparation->fetchAll(PDO::FETCH_OBJ);
 
-require ('header.php');
 
 
 
 ?> 
 
-<table id="etudiants" class="w3-table w3-striped w3-border">
+<table class="w3-table w3-striped w3-border">
 <tr class="w3-green">
   <th>ID</th>
   <th>Prénom</th>
   <th>Nom</th>
   <th>Email</th>
   <th>Module</th>
-  <!-- <th>Action</th> -->
+  <th>Réinitialiser Mot de Passe</th>
   <!-- <th>Mot de passe</th> -->
 
 </tr>
@@ -40,7 +41,9 @@ require ('header.php');
   <td><?=$etudiant->prenom; ?></td>
   <td><?=$etudiant->nom; ?></td>
   <td><?=$etudiant->email; ?></td>
-  <td><?=$etudiant->module; ?></td> 
+  <td><?=$etudiant->module; ?></td>
+  <td><a href="reinitialiser.php?id=<?= $etudiant->id;?>">Cliquer ici</a></td> 
+
 </tr>
 <?php endforeach; ?>
 

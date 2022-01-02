@@ -1,65 +1,99 @@
 <?php 
 session_start();
 
-if (isset($_SESSION['user_id']) ) {
-  header("Location: index.php");
-}
+// if (isset($_SESSION['user_id']) ) {
+//   header("Location: index.php");
+// }
 
 require("database/db.php");
 
 $message = "";
-// $url = "";
+
 
 
 ?>
 
-<!-- <link rel="stylesheet" href="css/w3.css"> -->
 
-<?php
+<!-- 
+// if (isset($_POST['envoyer'])) {
 
-if (isset($_POST['envoyer'])) {
+//   if (isset($_POST['email']) && isset($_POST['psw']) && isset($_POST['psw-repeat'])) {
+//     $motdepasse1 = $_POST['psw'];
+//     $motdepasse2 = $_POST['psw-repeat'];
 
-  if (isset($_POST['email']) && isset($_POST['psw']) && isset($_POST['psw-repeat'])) {
-    $motdepasse1 = $_POST['psw'];
-    $motdepasse2 = $_POST['psw-repeat'];
+//     $erreurMoDePasse = "";
 
-    $erreurMoDePasse = "";
+//   if ($motdepasse1 != $motdepasse2) {
 
-  if ($motdepasse1 != $motdepasse2) {
+//     $erreurMoDePasse = "Les deux mots de passe ne corespondent pas";
+//   }
 
-    $erreurMoDePasse = "Les deux mots de passe ne corespondent pas";
-  }
-
-    if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['module']) && !empty($_POST['psw'])  && !empty($_POST['psw-repeat']) && $_POST['psw'] === $_POST['psw-repeat'] ) {
+//     if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['module']) && !empty($_POST['psw'])  && !empty($_POST['psw-repeat']) && $_POST['psw'] === $_POST['psw-repeat'] ) {
 
   
-      $sql = "INSERT INTO etudiant (prenom, nom, email, module, motdepasse1, motdepasse2) VALUES (:prenom, :nom, :email, :module, :motdepasse1, :motdepasse2)";
+//       $sql = "INSERT INTO etudiant (prenom, nom, email, module, motdepasse1, motdepasse2) VALUES (:prenom, :nom, :email, :module, :motdepasse1, :motdepasse2)";
   
-      $stmt = $db->prepare($sql);
+//       $stmt = $db->prepare($sql);
   
-      $stmt->bindParam(':prenom', $_POST['prenom']);
-      $stmt->bindParam(':nom', $_POST['nom']);
-      $stmt->bindParam(':email', $_POST['email']);
-      $stmt->bindParam(':module', $_POST['module']);
-      $stmt->bindParam(':motdepasse1', password_hash($_POST['psw'], PASSWORD_BCRYPT));
-      $stmt->bindParam(':motdepasse2', password_hash($_POST['psw-repeat'], PASSWORD_BCRYPT));
+//       $stmt->bindParam(':prenom', $_POST['prenom']);
+//       $stmt->bindParam(':nom', $_POST['nom']);
+//       $stmt->bindParam(':email', $_POST['email']);
+//       $stmt->bindParam(':module', $_POST['module']);
+//       $stmt->bindParam(':motdepasse1', password_hash($_POST['psw'], PASSWORD_BCRYPT));
+//       $stmt->bindParam(':motdepasse2', password_hash($_POST['psw-repeat'], PASSWORD_BCRYPT));
   
-      if ($stmt->execute()) {
-        $message = "Un élément a été enrégistré avec succés!!!";
-      } else {
-        $message = "Désolé il doit y avoir une ERREUR en créant votre compte";
+//       if ($stmt->execute()) {
+//         $message = "Un élément a été enrégistré avec succés!!!";
+//       } else {
+//         $message = "Désolé il doit y avoir une ERREUR en créant votre compte";
   
-      }
+//       }
   
-    }
+//     }
 
-  }
+//   }
 
 
  
+// } -->
+
+
+
+<?php
+
+
+if (isset($_POST['envoyer'])) {
+  if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['module']) && isset($_POST['psw']) && isset($_POST['psw-repeat']) && $_POST['psw'] == $_POST['psw-repeat']) {
+
+      $prenom = $_POST['prenom'];
+      $nom = $_POST['nom'];
+      $email = $_POST['email'];
+      $module = $_POST['module'];
+      $motdepasse1 = password_hash($_POST['psw'], PASSWORD_BCRYPT);
+      $motdepasse2 = password_hash($_POST['psw-repeat'], PASSWORD_BCRYPT);
+
+      $erreurMoDePasse = "";
+      if ($motdepasse1 != $motdepasse2) {
+        $erreurMoDePasse = "Les deux mots de passe ne corespondent pas";
+      }
+        
+      $sql = "INSERT INTO etudiant (prenom, nom, email, module, motdepasse1, motdepasse2) VALUES (:prenom, :nom, :email, :module, :motdepasse1, :motdepasse2)";
+
+     
+
+
+      $preparation = $db->prepare($sql);
+
+      if ($preparation->execute([':prenom' => $prenom ,':nom' => $nom, ':email' => $email, ':module' => $module, ':motdepasse1' => $motdepasse1, ':motdepasse2' => $motdepasse2])) {
+         $message = "Un élément a été enrégistré avec succés!!!";
+
+      } else {
+        $message = "Désolé il doit y avoir une ERREUR en créant votre compte";
+      }
+
+    
+  }
 }
-
-
 
 ?>
 
@@ -69,6 +103,8 @@ if (isset($_POST['envoyer'])) {
 
 
 <link rel="stylesheet" href="css/signup.css">
+<link rel="stylesheet" href="css/w3.css">
+
 
 <div id="modal" class="modal">
     <span onclick="closeToggle()" class="close" title="Close Modal">&times;</span>
