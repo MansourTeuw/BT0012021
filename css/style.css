@@ -188,7 +188,8 @@ img {
 
 #footer {
     /* margin-right: auto; */
-    /* position: relative; */
+    position: static;
+    float: none;
     background: rgb(68, 65, 65);
     color: #fff;
     width: 100%;
@@ -196,7 +197,7 @@ img {
     bottom: 0%;
     display: flex;
     justify-content: space-between;
-    margin: 10% auto auto auto;
+    margin-top: 25%;
 } 
 
 

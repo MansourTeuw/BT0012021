@@ -39,7 +39,7 @@ if (!isset($_SESSION['admin_id']) ) {
     <link rel="stylesheet" href="../css/tables.css">
 </head>
 <body>
-<div class="w3-bar w3-black">
+<div class="w3-bar w3-black"> 
   <a href="../index.php" class="w3-bar-item w3-button w3-mobile w3-yellow">Accueil</a>
   <a href="index.php" class="w3-bar-item w3-button w3-mobile w3-green">Tableau de Bord</a>
   <a href="CRUD/insererAdmin.php" class="w3-bar-item w3-button w3-mobile w3-blue">Inserer User Admin</a>

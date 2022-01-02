@@ -1,5 +1,8 @@
 <?php
-session_start();
+// session_start();
+// if (!isset($_SESSION['user_id']) ) {
+//   header("Location: ../login.php");
+// }
     require ('../database/db.php');
     require ('headerServices.php');
 
