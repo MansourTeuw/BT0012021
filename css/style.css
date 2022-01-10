@@ -4,14 +4,20 @@
 }
 
 body {
-    /* margin: 0; */
-    /* padding-bottom: 0; */
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #ecddc0;
 }
 
-/* .w3-bar {
-    position: fixed;
-} */
+.w3-bar {
+    background-color: #FF5722 !important;
+    color: #fff !important;
+    
+}
+
+#logo {
+    width: 40px;
+    height: 40px;
+}
 
 .w3-dropdown-hover:hover {
     position: static;

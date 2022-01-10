@@ -53,7 +53,7 @@
 
     <div class="w3-container w3-blue" id="banner">
         <h1><marquee behavior="" direction="">Bienvenue sur Daara-Ji Elearning</marquee></h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem mollitia eos ipsa minima voluptatibus quod quos exercitationem.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem mollitia eos ipsa minima voluptatibus quod quos.</p>
     </div>
 
     <div class="w3-container" id="sidebar-about">

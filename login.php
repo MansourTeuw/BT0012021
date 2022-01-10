@@ -73,7 +73,7 @@ require("database/db.php");
     <link rel="stylesheet" href="css/style2.css">
     
     <form class="box" action="login.php" method="post">
-    <div class="w3-panel w3-yellow w3-card-4">
+    <div class="w3-panel w3-orange w3-card-4">
       <?php if (!empty($message)): ?>
         <p><?= $message; ?></p>
       <?php endif?>
@@ -81,9 +81,9 @@ require("database/db.php");
        <h1>Connexion </h1> 
        <input type="email" name="email" value="" placeholder="Email">
        <input type="password" name="psw" placeholder="Mot de passe">
-       <div class="clearfix">
-       <input type="reset" name=" "value="Annuler">
-       <input type="submit" name=" "value="Connexion">
+       <div id="clearfix">
+       <input id="red" class="btn" type="reset" name="" value="Annuler">
+       <input  class="btn" type="submit" name="" value="Connexion">
        <a href="signup.php">Ou S'inscrire</a>
        </div>
     </form>
