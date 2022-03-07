@@ -28,12 +28,13 @@ require("database/db.php");
 
         if (count(array($resultats)) > 0 && password_verify($_POST['psw'], $resultats['motdepasse1']) ) {
             $_SESSION['user_id'] = $resultats['id'];
-            $_SESSION['user_module'] = $resultats['module'];
+            // $_SESSION['user_module'] = $resultats['module'];
+            $user_module = $resultats['module'];
 
             $url = "";
             $message = "";
 
-            switch($_SESSION['user_module']){
+            switch($user_module){
               case "php":
                 $url = "services/espaceEtudiantPHP.php";
                 break;

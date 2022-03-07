@@ -1,4 +1,4 @@
-<?php 
+<?php  
 session_start();
 
 if (!isset($_SESSION['admin_id']) ) {
@@ -39,7 +39,7 @@ if (!isset($_SESSION['admin_id']) ) {
     <link rel="stylesheet" href="../css/tables.css">
 </head>
 <body>
-<div class="w3-bar w3-black"> 
+<div class="w3-bar w3-black w3-top"> 
   <a href="../index.php" class="w3-bar-item w3-button w3-mobile w3-yellow">Accueil</a>
   <a href="index.php" class="w3-bar-item w3-button w3-mobile w3-green">Tableau de Bord</a>
   <a href="CRUD/insererAdmin.php" class="w3-bar-item w3-button w3-mobile w3-blue">Inserer User Admin</a>
@@ -62,6 +62,7 @@ if (!isset($_SESSION['admin_id']) ) {
 <table id="etudiants" class="w3-table w3-striped w3-border">
 <tr class="w3-green">
   <th>ID</th>
+  <th>Image</th>
   <th>Prénom</th>
   <th>Nom</th>
   <th>Email</th>
@@ -75,6 +76,7 @@ if (!isset($_SESSION['admin_id']) ) {
 
 <tr>
   <td><?=$etudiant->id; ?></td>
+  <td style="width:30%;"><img src="../uploads/<?= $etudiant->image; ?>" style="width:10%; height:10%;"></td>
   <td><?=$etudiant->prenom; ?></td>
   <td><?=$etudiant->nom; ?></td>
   <td><?=$etudiant->email; ?></td>

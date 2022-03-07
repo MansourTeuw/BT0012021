@@ -54,9 +54,12 @@ if (isset($_POST['connexion'])) {
        <input type="email" name="email" value="" placeholder="Email">
        <input type="password" name="psw" placeholder="Mot de passe">
        <div class="clearfix">
-       <input type="reset" name="" value="Annuler">
-       <input type="submit" name="connexion" value="Connexion">
-       <a href="signupAdmin.php">Inscription</a>
+         <div class="loginButton">
+           </div>
+       <input type="reset" class="btn" id="red" name="" value="Annuler">
+       <input type="submit" class="btn" name="connexion" value="Connexion">
+       </div>
+       <button class="redirectBtn"><a href="signupAdmin.php">Inscription</button></a>
        </div>
     </form>
 </body>

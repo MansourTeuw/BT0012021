@@ -52,6 +52,31 @@ const showSlides = () => {
 
 showSlides();
 
+// jQuery
+
+$('document').ready(() => {
+    $('.about1').on('mouseover', () => {
+    $('#histoire').toggleClass('style-histoire');
+    $('#title-histoire').toggleClass('title-histoire');
+
+});
+    $('.about2').on('mouseover', () => {
+    $('#mission').toggleClass('style-mission');
+    $('#title-mission').toggleClass('title-mission');
+
+});
+
+    $('.about3').on('mouseover', () => {
+    $('#valeurs').toggleClass('style-valeurs');
+    $('#title-valeurs').toggleClass('title-valeurs');
+
+});
+
+
+})
+
+
+
 
 
 
